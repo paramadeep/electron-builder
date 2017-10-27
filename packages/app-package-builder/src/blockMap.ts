@@ -56,11 +56,11 @@ async function appendBlockMapData(blockMap: BlockMap, archiveFile: string, fd: n
 
   // Compatibility with nodejs 6, because:
   // v7.2.0 The offset and length parameters are optional now.
-  await write(fd, blockMapFileData, 0, blockMapFileData.length)
+  await write(fd, blockMapFileData, 0, blockMapFileData.length,undefined,undefined,undefined)
   if (addLength) {
     const sizeBuffer = Buffer.alloc(4)
     sizeBuffer.writeUInt32BE(blockMapFileData.length, 0)
-    await write(fd, sizeBuffer, 0, sizeBuffer.length)
+    await write(fd, sizeBuffer, 0, sizeBuffer.length,undefined,undefined,undefined)
   }
 
   await close(fd)
